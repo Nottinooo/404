@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>404 - Pagina non trovata</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #232526 0%, #414345 100%);
+      overflow: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #fff;
+      position: relative;
+      transition: background 1s;
+    }
+    body.light {
+      background: linear-gradient(135deg, #b3e5fc 0%, #e1f5fe 100%);
+      color: #222;
+    }
+    body.light .big-404 {
+      color: #0077ff;
+      text-shadow: 0 0 40px #fff, 0 0 10px #00eaff;
+    }
+    body.light .desc {
+      color: #0077ff;
+      text-shadow: 0 0 10px #00eaff44;
+    }
+    body.light .home-btn {
+      background: linear-gradient(90deg, #0077ff 0%, #00eaff 100%);
+      color: #fff;
+    }
+    .stars {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+      transition: background 0.5s;
+    }
+    body.light .star {
+      background: #1976d2;
+      opacity: 0.85;
+      box-shadow: 0 0 4px 2px #fff;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+    .cloud {
+      position: absolute;
+      top: 20%;
+      left: 60%;
+      width: 180px;
+      height: 60px;
+      background: #fff;
+      border-radius: 60px;
+      opacity: 0.7;
+      box-shadow: 60px 0 0 0 #fff, 120px 10px 0 0 #fff, 90px -20px 0 0 #fff;
+      animation: cloud-move 10s linear infinite alternate;
+      z-index: 1;
+      transition: background 0.5s, box-shadow 0.5s;
+      border: 2px solid #b3e5fc;
+    }
+    body.light .cloud {
+      background: #e3f2fd;
+      box-shadow: 60px 0 0 0 #e3f2fd, 120px 10px 0 0 #e3f2fd, 90px -20px 0 0 #e3f2fd;
+      border: 2px solid #90caf9;
+    }
+    @keyframes cloud-move {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100px); }
+    }
+    .planet {
+      position: absolute;
+      bottom: 10%;
+      left: 10%;
+      width: 120px;
+      height: 120px;
+      z-index: 2;
+      animation: planet-rotate 10s linear infinite;
+    }
+    body.light .planet circle {
+      fill: #0077ff;
+    }
+    body.light .planet ellipse {
+      fill: #00eaff;
+      opacity: 0.3;
+    }
+    body.light .planet circle:nth-child(3),
+    body.light .planet circle:nth-child(4) {
+      fill: #fff;
+      opacity: 0.5;
+    }
+    @keyframes planet-rotate {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    .astronaut {
+      position: absolute;
+      top: 30%;
+      right: 8%;
+      width: 80px;
+      z-index: 2;
+      animation: float-astro 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px #00eaff88);
+      transition: filter 0.5s;
+    }
+    body.light .astronaut {
+      filter: drop-shadow(0 0 12px #0077ff55);
+    }
+    @keyframes float-astro {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-30px);}
+    }
+    .meteor {
+      position: absolute;
+      width: 40px;
+      height: 8px;
+      background: linear-gradient(90deg, #00eaff 0%, #0077ff 100%);
+      border-radius: 8px;
+      opacity: 0.7;
+      z-index: 2;
+      pointer-events: none;
+      animation: meteor-move 3s linear infinite;
+      transition: background 0.5s;
+    }
+    body.light .meteor {
+      background: linear-gradient(90deg, #0077ff 0%, #00eaff 100%);
+      opacity: 0.7;
+    }
+    @keyframes meteor-move {
+      0% { transform: translate(-100vw, -100vh) rotate(-30deg);}
+      100% { transform: translate(100vw, 100vh) rotate(-30deg);}
+    }
+    .moon {
+      position: absolute;
+      top: 8%;
+      left: 75%;
+      width: 70px;
+      height: 70px;
+      background: #fffde4;
+      border-radius: 50%;
+      box-shadow: 0 0 40px 10px #fffde4aa;
+      z-index: 1;
+      animation: moon-glow 3s ease-in-out infinite;
+      transition: background 0.5s, box-shadow 0.5s;
+    }
+    body.light .moon {
+      background: #fff;
+      box-shadow: 0 0 40px 10px #b3e5fcaa;
+    }
+    @keyframes moon-glow {
+      0%, 100% { box-shadow: 0 0 40px 10px #fffde4aa;}
+      50% { box-shadow: 0 0 80px 20px #fffde4cc;}
+    }
+    .container-404 {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .big-404 {
+      font-size: 10rem;
+      font-weight: bold;
+      letter-spacing: 1rem;
+      color: #fff;
+      text-shadow: 0 0 40px #00eaff, 0 0 10px #00eaff;
+      animation: bounce404 2s infinite;
+      user-select: none;
+    }
+    @keyframes bounce404 {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-30px);}
+    }
+    .desc {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #c0e7ff;
+      text-shadow: 0 0 10px #00eaff44;
+      animation: fadein 2s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .home-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-size: 1.3rem;
+      color: #fff;
+      background: linear-gradient(90deg, #00eaff 0%, #0077ff 100%);
+      border: none;
+      border-radius: 40px;
+      box-shadow: 0 4px 20px #00eaff55;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      animation: pulse 2s infinite;
+    }
+    .home-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 40px #00eaff99;
+      background: linear-gradient(90deg, #0077ff 0%, #00eaff 100%);
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px #00eaff55; }
+      50% { box-shadow: 0 8px 40px #00eaff99; }
+    }
+    .theme-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 10;
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #00eaff55;
+      transition: background 0.3s, color 0.3s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadein 2s;
+    }
+    .theme-btn:hover {
+      background: #00eaff;
+      color: #222;
+    }
+    body.light .theme-btn {
+      background: #fff;
+      color: #0077ff;
+    }
+    .sparkle {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+      z-index: 3;
+      animation: sparkle-anim 1.2s linear infinite;
+    }
+    body.light .sparkle polygon {
+      fill: #0077ff;
+    }
+    @keyframes sparkle-anim {
+      0% { opacity: 0; transform: scale(0.5) rotate(0deg);}
+      50% { opacity: 1; transform: scale(1.2) rotate(180deg);}
+      100% { opacity: 0; transform: scale(0.5) rotate(360deg);}
+    }
+    @media (max-width: 600px) {
+      .big-404 { font-size: 5rem; }
+      .desc { font-size: 1.2rem; }
+      .cloud { width: 100px; height: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-btn" id="themeBtn" title="Cambia tema">🌙</button>
+  <div class="stars" id="stars"></div>
+  <div class="cloud"></div>
+  <div class="moon"></div>
+  <svg class="planet" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="50" fill="#00eaff" />
+    <ellipse cx="60" cy="80" rx="35" ry="12" fill="#0077ff" opacity="0.4"/>
+    <circle cx="90" cy="40" r="10" fill="#fff" opacity="0.5"/>
+    <circle cx="40" cy="30" r="6" fill="#fff" opacity="0.3"/>
+  </svg>
+  <svg class="astronaut" viewBox="0 0 64 64">
+    <ellipse cx="32" cy="54" rx="18" ry="6" fill="#000" opacity="0.15"/>
+    <circle cx="32" cy="28" r="16" fill="#fff"/>
+    <ellipse cx="32" cy="28" rx="10" ry="12" fill="#e0f7fa"/>
+    <rect x="24" y="44" width="16" height="8" rx="4" fill="#fff"/>
+    <rect x="28" y="52" width="8" height="8" rx="4" fill="#e0f7fa"/>
+    <circle cx="32" cy="28" r="8" fill="#b3e5fc" opacity="0.5"/>
+    <rect x="30" y="16" width="4" height="8" rx="2" fill="#fff"/>
+  </svg>
+  <div class="container-404">
+    <div class="big-404">404</div>
+    <div class="desc">Oops! La pagina che cerchi non esiste.<br>Forse sei perso nello spazio?</div>
+    <button class="home-btn" onclick="goHome()">Torna alla Home</button>
+  </div>
+  <svg class="sparkle" id="sparkle" viewBox="0 0 16 16" fill="none">
+    <polygon points="8,0 10,6 16,8 10,10 8,16 6,10 0,8 6,6" fill="#fffacd" />
+  </svg>
+  <script>
+    const starsContainer = document.getElementById('stars');
+    for(let i=0; i<80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (1 + Math.random() * 2) + 's';
+      starsContainer.appendChild(star);
+    }
+    function spawnMeteor() {
+      const meteor = document.createElement('div');
+      meteor.className = 'meteor';
+      meteor.style.top = Math.random() * 60 + '%';
+      meteor.style.left = '-60px';
+      meteor.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(meteor);
+      setTimeout(() => meteor.remove(), 4000);
+    }
+    setInterval(spawnMeteor, 1200);
+
+    const sparkle = document.getElementById('sparkle');
+    document.addEventListener('mousemove', e => {
+      sparkle.style.left = (e.clientX - 8) + 'px';
+      sparkle.style.top = (e.clientY - 8) + 'px';
+    });
+    function goHome() {
+      window.location.href = '/';
+    }
+    document.addEventListener('click', e => {
+      sparkle.style.animation = 'none';
+      void sparkle.offsetWidth;
+      sparkle.style.animation = '';
+    });
+    function updateSparkleColor() {
+      const poly = document.querySelector('.sparkle polygon');
+      if(document.body.classList.contains('light')) {
+        poly.setAttribute('fill', '#0077ff');
+      } else {
+        poly.setAttribute('fill', '#fffacd');
+      }
+    }
+    const themeBtn = document.getElementById('themeBtn');
+    let isLight = false;
+    themeBtn.addEventListener('click', () => {
+      isLight = !isLight;
+      document.body.classList.toggle('light', isLight);
+      themeBtn.textContent = isLight ? '🌑' : '🌙';
+      updateSparkleColor();
+    });
+    updateSparkleColor();
+    document.addEventListener('keydown', e => {
+      if (e.key.toLowerCase() === 's') {
+        alert('🌟 Sei una stella nello spazio! 🌟');
+      }
+    });
+  </script>
+</body>
+</html>
